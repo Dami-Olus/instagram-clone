@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native';
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../redux/actions/index'
+
+import FeedScreen from './main/Feed'
+
+const Tab = createMaterialBottomTabNavigator();
 
 export class Main extends Component {
 
@@ -11,18 +18,12 @@ export class Main extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
-
-    console.log()
-    if(currentUser==undefined){
-      return(
-        <View></View>
-      )
-      }
+   
     return (
-      <View style={{ flex: 1, justifyContent: "center"}}>
-        <Text>{ currentUser.name } is logged in</Text>
-      </View>
+      <Tab.Navigator>
+      <Tab.Screen name="Feed" component={FeedScreen} />
+      
+    </Tab.Navigator>
     )
   }
 }
